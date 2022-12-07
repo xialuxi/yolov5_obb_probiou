@@ -124,7 +124,7 @@ class ComputeLoss:
             setattr(self, k, getattr(det, k))
             
         self.iouloss = ProbiouLoss()  
-        self.angle_max = 181
+        self.angle_max = 180
         self.half_pi = torch.tensor([1.5707963267948966], dtype=torch.float32,  requires_grad=False).to(device)
         self.half_pi_bin = self.half_pi / self.angle_max
         self.half_pi_bin = torch.tensor(self.half_pi_bin, requires_grad=False)

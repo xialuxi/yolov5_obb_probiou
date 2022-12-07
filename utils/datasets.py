@@ -639,7 +639,7 @@ class LoadImagesAndLabels(Dataset):
             rboxes, csl_labels  = poly2rbox(polys=labels[:, 1:], 
                                             num_cls_thata=hyp['cls_theta'] if hyp else 180, 
                                             radius=hyp['csl_radius'] if hyp else 6.0, 
-                                            use_pi=True, use_gaussian=True)
+                                            use_pi=True, use_gaussian=False)
             labels_obb = np.concatenate((labels[:, :1], rboxes, csl_labels), axis=1)
             labels_mask = (rboxes[:, 0] >= 0) & (rboxes[:, 0] < img.shape[1]) \
                         & (rboxes[:, 1] >= 0) & (rboxes[:, 0] < img.shape[0]) \

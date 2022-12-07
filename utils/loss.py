@@ -170,12 +170,12 @@ class ComputeLoss:
                 prbox = torch.cat((pxy, pwh, pangle), 1)
                 trbox = torch.cat((tbox[i], ttheta[i]), 1)
                 probiou_loss = self.iouloss(prbox, trbox)
-                iou = 1 - probiou_loss
                 lbox += probiou_loss.mean()
                 
                 
 
                 # Objectness
+                iou = bbox_iou(pbox.T, tbox[i], x1y1x2y2=False, CIoU=True)
                 score_iou = iou.detach().clamp(0).type(tobj.dtype)
                 if self.sort_obj_iou:
                     sort_id = torch.argsort(score_iou)
